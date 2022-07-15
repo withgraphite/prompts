@@ -1,5 +1,5 @@
 {
-  "name": "graphite-prompts",
+  "name": "@withgraphite/graphite-prompts",
   "version": "0.0.1",
   "description": "Lightweight, beautiful and user-friendly prompts -- forked for the Graphite CLI",
   "license": "MIT",
