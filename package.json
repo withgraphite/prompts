@@ -1,9 +1,9 @@
 {
   "name": "prompts",
-  "version": "2.4.2",
-  "description": "Lightweight, beautiful and user-friendly prompts",
+  "version": "0.0.1",
+  "description": "Lightweight, beautiful and user-friendly prompts -- forked for the Graphite CLI",
   "license": "MIT",
-  "repository": "terkelg/prompts",
+  "repository": "withgraphite/prompts",
   "main": "index.js",
   "author": {
     "name": "Terkel Gjervig",
