@@ -1,9 +1,9 @@
 {
-  "name": "prompts",
-  "version": "2.4.2",
+  "name": "@withgraphite/prompts",
+  "version": "0.0.1",
   "description": "Lightweight, beautiful and user-friendly prompts",
   "license": "MIT",
-  "repository": "terkelg/prompts",
+  "repository": "withgraphite/prompts",
   "main": "index.js",
   "author": {
     "name": "Terkel Gjervig",
@@ -45,5 +45,8 @@
   },
   "engines": {
     "node": ">= 14"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
