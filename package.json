@@ -1,6 +1,6 @@
 {
   "name": "@withgraphite/prompts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lightweight, beautiful and user-friendly prompts",
   "license": "MIT",
   "repository": "withgraphite/prompts",
