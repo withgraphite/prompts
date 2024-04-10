@@ -16,7 +16,8 @@
   ],
   "scripts": {
     "start": "node lib/index.js",
-    "test": "tape test/*.js | tap-spec",
+    "test-old": "tape test/*.js | tap-spec # we no longer use tap-spec because dependabot said so",
+    "test": "tape test/*.js",
     "test-types": "tsc --noEmit test/type-declarations.ts"
   },
   "keywords": [
@@ -39,7 +40,6 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.17",
-    "tap-spec": "^5.0.0",
     "tape": "^4.13.3",
     "typescript": "^4.9.4"
   },
