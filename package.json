@@ -3,7 +3,10 @@
   "version": "0.0.3",
   "description": "Lightweight, beautiful and user-friendly prompts",
   "license": "MIT",
-  "repository": "withgraphite/prompts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/withgraphite/prompts.git"
+  },
   "main": "index.js",
   "author": {
     "name": "Terkel Gjervig",
