@@ -56,3 +56,28 @@ test('injects', t => {
         });
     });
 });
+
+test('resetInjectedAnswers', t => {
+  let injected = [ 1, 2, 3 ];
+  prompt.inject(injected);
+  t.same(prompt._injected, injected, 'injects array of answers');
+
+  prompt({ type: 'text', name:'a', message: 'a message' })
+    .then(foo => {
+      t.same(foo, { a:1 }, 'immediately returns object with injected answer');
+      t.same(prompt._injected, [ 2, 3 ], 'deletes the first answer from internal array');
+
+      prompt.resetInjectedAnswers();
+      t.same(prompt._injected, [], 'deletes everything from internal array');
+
+      let secondInjected = [ 4, 5 ];
+      prompt.inject(secondInjected)
+      t.same(prompt._injected, secondInjected, 'injects second array of answers');
+      prompt([{ type: 'text', name:'b', message: 'b message' }, { type: 'text', name:'c', message: 'c message' }])
+        .then(bar => {
+          t.same(bar, { b:4, c:5 }, 'immediately handles two prompts at once with new injected answers');
+          t.same(prompt._injected, [], 'leaves behind empty internal array when exhausted');
+          t.end();
+        });
+    });
+});
