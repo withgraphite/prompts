@@ -38,6 +38,7 @@
     "interact"
   ],
   "dependencies": {
+    "isomorphic-git": "^1.34.2",
     "kleur": "^4.0.1",
     "sisteransi": "^1.0.5"
   },
