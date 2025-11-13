@@ -91,6 +91,44 @@ test('deleteToStart', (t) => {
   t.end();
 });
 
+test('first', (t) => {
+  t.plan(3);
+
+  const textPrompt = new TextPrompt();
+  textPrompt.value = 'Hello, world!';
+  textPrompt.last();
+  textPrompt.render();
+
+  // Nudge left so offset is non-zero, then verify reset on first()
+  textPrompt.left();
+  t.same(textPrompt.cursorOffset, -1, 'precondition: cursorOffset moved left');
+
+  textPrompt.first();
+  t.same(textPrompt.cursor, 0, 'cursor moved to start');
+  t.same(textPrompt.cursorOffset, 0, 'cursorOffset reset to 0');
+
+  t.end();
+});
+
+test('last', (t) => {
+  t.plan(3);
+
+  const textPrompt = new TextPrompt();
+  textPrompt.value = 'Hello, world!';
+  textPrompt.first();
+  textPrompt.render();
+
+  // Nudge right so offset is non-zero, then verify reset on last()
+  textPrompt.right();
+  t.same(textPrompt.cursorOffset, 1, 'precondition: cursorOffset moved right');
+
+  textPrompt.last();
+  t.same(textPrompt.cursor, textPrompt.rendered.length, 'cursor moved to end');
+  t.same(textPrompt.cursorOffset, 0, 'cursorOffset reset to 0');
+
+  t.end();
+});
+
 test('deleteWord', (t) => {
   t.plan(7);
 
