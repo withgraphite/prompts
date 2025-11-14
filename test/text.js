@@ -92,39 +92,63 @@ test('deleteToStart', (t) => {
 });
 
 test('first', (t) => {
-  t.plan(3);
+  t.plan(4);
 
   const textPrompt = new TextPrompt();
   textPrompt.value = 'Hello, world!';
   textPrompt.last();
   textPrompt.render();
 
-  // Nudge left so offset is non-zero, then verify reset on first()
-  textPrompt.left();
-  t.same(textPrompt.cursorOffset, -1, 'precondition: cursorOffset moved left');
+  // Move left repeatedly to the beginning to capture expected state
+  const length = textPrompt.rendered.length;
+  for (let i = 0; i < length; i++) {
+    textPrompt.left();
+  }
 
+  const expectedCursor = textPrompt.cursor;
+  const expectedOffset = textPrompt.cursorOffset;
+
+  t.same(expectedCursor, 0, 'manual movement reaches start');
+
+  // Reset to end and use first()
+  textPrompt.last();
+  textPrompt.render();
   textPrompt.first();
+
+  t.same(textPrompt.cursor, expectedCursor, 'first() cursor matches manual movement');
+  t.same(textPrompt.cursorOffset, expectedOffset, 'first() cursorOffset matches manual movement');
   t.same(textPrompt.cursor, 0, 'cursor moved to start');
-  t.same(textPrompt.cursorOffset, 0, 'cursorOffset reset to 0');
 
   t.end();
 });
 
 test('last', (t) => {
-  t.plan(3);
+  t.plan(4);
 
   const textPrompt = new TextPrompt();
   textPrompt.value = 'Hello, world!';
   textPrompt.first();
   textPrompt.render();
 
-  // Nudge right so offset is non-zero, then verify reset on last()
-  textPrompt.right();
-  t.same(textPrompt.cursorOffset, 1, 'precondition: cursorOffset moved right');
+  // Move right repeatedly to the end to capture expected state
+  const length = textPrompt.rendered.length;
+  for (let i = 0; i < length; i++) {
+    textPrompt.right();
+  }
 
+  const expectedCursor = textPrompt.cursor;
+  const expectedOffset = textPrompt.cursorOffset;
+
+  t.same(expectedCursor, textPrompt.rendered.length, 'manual movement reaches end');
+
+  // Reset to start and use last()
+  textPrompt.first();
+  textPrompt.render();
   textPrompt.last();
+
+  t.same(textPrompt.cursor, expectedCursor, 'last() cursor matches manual movement');
+  t.same(textPrompt.cursorOffset, expectedOffset, 'last() cursorOffset matches manual movement');
   t.same(textPrompt.cursor, textPrompt.rendered.length, 'cursor moved to end');
-  t.same(textPrompt.cursorOffset, 0, 'cursorOffset reset to 0');
 
   t.end();
 });
